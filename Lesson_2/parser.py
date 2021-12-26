@@ -4,9 +4,10 @@ from bs4 import BeautifulSoup
 city = "vladivostok"
 country = "russia"
 url = "https://world-weather.ru/pogoda/"
-response = requests.get(url + country + "/" + city)
+response = requests.get(url + country + "/" + city)    #получаем ответ на hhtp запрос
+                                                       #и записываем информацию о сайте в переменную
 
-html = BeautifulSoup(response.content, "lxml")
+html = BeautifulSoup(response.content, "lxml")         #Передаем функции BeautifulSoup html код и указываем способ разметки hmtl
 
 print(response)
 
@@ -15,6 +16,25 @@ print(response)
 #Ответ 3xx -- перенаправление запроса
 #Ответ 4xx -- ошибка на стороне пользователя
 #Ответ 5xx -- ошибка на стороне сайта
+
+
+
+# html.find(tag, attr) - находит первый тег по заданным условиям
+# tag - имя тега который ищем (div, span, ul, li, a ....)
+# attr - атрибуты тега (id, clas, title ...)
+
+# html.select(selector) - находит все элементы по данному селектору и возвращает список из них
+# selector - селектор:
+# .class - все элементы с классом class  (class="class")
+# #id - все элементы с идентификатором id(id="id")
+# tag - все элеметы с тегом tag(<tag>)
+# элемент1 элемент2 - все элементы2 внутри элемента1
+# элемент1>элемент2 - все элементы2 непосредственно(первого уровня) внутри элемента1 
+
+# html.text - текст элемента
+
+# html.tag - выбор элемента с тегом tag в html
+
 
 def temp():
     #<div id="weather-now-number">0<span>°</span></div>
