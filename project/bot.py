@@ -1,11 +1,11 @@
+from concurrent.futures import process
 import vk_api
 import random
 from vk_api.longpoll import VkLongPoll, VkEventType
 from Modules.course import getCourse
 from Modules.wiki import get_wikipedia_summary
 from Modules.weather import WeatherProcessor
-
-from Modules.memes_try import VkMemesProcessor
+from Modules.memes import VKMemesProcessor
 
 def main():
     TOKEN = "4dca71364da2c42822a9db6f75598e419d63c65998d68618ba6a4c178acc9c6b90f9e2870c94c21621816"
@@ -16,7 +16,8 @@ def main():
     hello_message = "Привет, я бот, я могу выполнять следующие команды:\n"\
                     "-к - курс валют\n"\
                     "-с <запрос>  cправка о чем-то\n"\
-                    "-п <город>  погода в городе"
+                    "-п <город>  погода в городе\n"\
+                    "-м отправлять случайный мем"
     
 
     for event in longpoll.listen():
@@ -38,10 +39,12 @@ def main():
                 processor = WeatherProcessor(msg[2:].strip())
                 processor.run()
                 vk.messages.send(user_id=event.user_id, random_id=random_id, message=processor.response)
+            
             if msg[0:2] == "-м":
-                processor = VkMemesProcessor()
+                processor = VKMemesProcessor()
                 processor.run()
                 vk.messages.send(user_id=event.user_id, random_id=random_id, attachment=processor.attachment)
+
 
 
 
