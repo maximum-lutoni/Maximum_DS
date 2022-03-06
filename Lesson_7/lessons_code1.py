@@ -1,4 +1,4 @@
-class A:
+class A:              # объявление класса
     def one(self):
         print(1)
     
@@ -6,7 +6,7 @@ class A:
         print(2)
 
 
-class B(A):
+class B(A):           # наследование класса
     def two(self):
         print("two")
 
@@ -15,13 +15,13 @@ class B(A):
 
 
 print("B")
-b = B()
-b.one()
-b.two()
-b.three()
+b = B()        
+b.one()          # 1
+b.two()          # two
+b.three()        # 3
 
 print("A")
 a = A()
-a.one()
-a.two()
+a.one()          # 1
+a.two()          # 2
 #a.three() вот тут уже ошибка

@@ -1,5 +1,6 @@
 from datetime import datetime
 
+# Декоратор считает время выполнения функции
 def timeit(func):
     def wrapper(val):
         start = datetime.now()

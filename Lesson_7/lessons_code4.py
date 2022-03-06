@@ -11,9 +11,9 @@ q = f
 print(q())
 
 def repair_deco(func): # постоянный аргумент это func
-    def wrapper(a,b): # аргумкенты которые получает функция
+    def wrapper(a,b):  # аргументы которые получает функция
         return func(a,b) - 1
-    return wrapper # возвращаем внутреннюю функцию
+    return wrapper     # возвращаем внутреннюю функцию
 
 
 @repair_deco
