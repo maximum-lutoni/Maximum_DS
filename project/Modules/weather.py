@@ -2,7 +2,7 @@ from venv import create
 import requests
 
 class WeatherProcessor:
-    weather_token = "71b4baa1e65fc3391caf943a3fd02f05"
+    weather_token = "api_key"   #Добаить свой ключ
     api_url= "http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}"
 
     def __init__(self, city):
