@@ -9,7 +9,7 @@ from Modules.memes import VKMemesProcessor
 from Modules.news import NewsProcessor
 
 def main():
-    TOKEN = "4dca71364da2c42822a9db6f75598e419d63c65998d68618ba6a4c178acc9c6b90f9e2870c94c21621816"
+    TOKEN = "api_key"   #записать свой ключ
 
     vk_session = vk_api.VkApi(token=TOKEN)
     vk = vk_session.get_api()
