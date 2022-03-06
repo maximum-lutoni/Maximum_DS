@@ -1,7 +1,7 @@
 import requests
 
 class NewsProcessor:
-    token = "d9513d2246f740ddb7b86858fd548650"
+    token = "api_key"   #Добаить свой ключ
     country = "ru"
 
     def __init__(self):
