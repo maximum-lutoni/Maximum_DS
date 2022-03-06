@@ -3,7 +3,7 @@ import vk_api
 import random
 
 class VKMemesProcessor:
-    token = "7ad7c1c67ad7c1c67ad7c1c6e17aac43d077ad77ad7c1c618f395ea99beaf89c212f970"
+    token = "api_key"   #Добаить свой ключ
     group_id = "-80799846"
 
     def __init__(self):
