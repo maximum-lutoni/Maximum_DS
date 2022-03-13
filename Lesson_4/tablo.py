@@ -40,7 +40,7 @@ def voice_course():
         time.sleep(6)
 
         mixer.quit()
-        os.remove(mp3_name)
+        #os.remove(mp3_name)
 
 
 
@@ -49,9 +49,9 @@ window = Tk()
 window.title("Курс валют")
 window.geometry("400x350+300+300")
 
-img = PhotoImage(file='logo.png')
-logo = Label(window, image=img)
-logo.place(x=0, y=0)
+#img = PhotoImage(file='logo.png')
+#logo = Label(window, image=img)
+#logo.place(x=0, y=0)
 
 lab = Label(window, text = "Курс валют \n Maximum банк", font="Arial 22")
 lab.place(y=25, x=150)

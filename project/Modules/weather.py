@@ -4,14 +4,14 @@ import requests
 #Класс выводящий погоду по городу.
 
 class WeatherProcessor:
-    weather_token = "api_key"   #Добаить свой ключ
+    weather_token = "71b4baa1e65fc3391caf943a3fd02f05"   #Добаить свой ключ
     api_url= "http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}"
 
     # инициализируем класс по городу
-    def __init__(self, city):
+    def __init__(self, *args):
         # инициализируем нужные поля
-        self.city = city    # создаем поле city
-        response: str       # response
+        self.city = args[0]    # создаем поле city
+        message: str       # response
         self.lat : str      # lat
         self.lon : str      # lon
     
@@ -29,7 +29,7 @@ class WeatherProcessor:
         self.lat = data[0].get("lat")   
         self.lon = data[0].get("lon")
         if self.lat is None:
-            self.response = "Город не найден"
+            self.message = "Город не найден"
             return
     
     # создаем response 
@@ -43,7 +43,7 @@ class WeatherProcessor:
         pressure = main["pressure"]
         humidity = main["humidity"]
         # заносим строку для вывода в response
-        self.response = f"Температура в {self.city.title()} {round(temp)}°C, ощущается как {round(feels_like)}°C"\
+        self.message = f"Температура в {self.city.title()} {round(temp)}°C, ощущается как {round(feels_like)}°C"\
             f"\nДавление: {pressure} мм рт. ст."\
             f"\nВлажность: {humidity}%"
 

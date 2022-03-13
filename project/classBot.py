@@ -1,4 +1,3 @@
-from concurrent.futures import process
 import vk_api
 import random
 from vk_api.longpoll import VkLongPoll, VkEventType
@@ -28,5 +27,13 @@ class Bot:
             "-м": VKMemesProcessor,
             "-н": NewsProcessor
         }
-    
-    
+    def _get_response(self):
+        pass
+
+    def _handler_massage(self):
+        pass
+
+    def run(self):
+        for event in self.longpoll.listen():
+            if event.type == VkEventType.MESSAGE_NEW and event.to_me:
+                msg = event.text.lower()

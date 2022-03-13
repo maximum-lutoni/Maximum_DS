@@ -4,11 +4,11 @@ import random
 
 # Пост со стены сообщества или пользователя
 class VKMemesProcessor:
-    token = "api_key"         # Добаить свой ключ
+    token = "e5dff7efe5dff7efe5dff7ef71e5a475b2ee5dfe5dff7ef87fb8c7653639713b7a4c8c2"         # Добаить свой ключ
     group_id = "-80799846"    # id группы(пользователя) с которой берем посты
 
     # иницализируем vk_api
-    def __init__(self):
+    def __init__(self, *args):
         self.attachment : str
         self.vk = vk_api.VkApi(token=self.token)
         self.vk._auth_token()

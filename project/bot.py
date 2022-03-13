@@ -9,7 +9,7 @@ from Modules.memes import VKMemesProcessor
 from Modules.news import NewsProcessor
 
 def main():
-    TOKEN = "api_key"   #записать свой ключ
+    TOKEN = "4dca71364da2c42822a9db6f75598e419d63c65998d68618ba6a4c178acc9c6b90f9e2870c94c21621816"   #записать свой ключ
 
     vk_session = vk_api.VkApi(token=TOKEN)
     vk = vk_session.get_api()
@@ -33,8 +33,8 @@ def main():
                 processor = CourseProcessor()
                 processor.run()
                 vk.messages.send(user_id=event.user_id, random_id=random_id, message=processor.response)
-                
-            if msg[0:2] == "-c":
+
+            if msg[0:2] == "-с":
                 processor = WikipediaProcessor(msg[2:])
                 processor.run()
                 vk.messages.send(user_id=event.user_id, random_id=random_id, message=processor.response)                

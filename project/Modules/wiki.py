@@ -1,9 +1,9 @@
 import wikipedia
 class WikipediaProcessor():
 
-    def __init__(self,article):
-        self.article = article
-        response:str
+    def __init__(self,*args):
+        self.article = args[0]
+        message:str
         wikipedia.set_lang("ru")
 
     def _get_response(self):
@@ -15,7 +15,7 @@ class WikipediaProcessor():
             return "Не удалось обнаружить иформацию по запросу"
     
     def run(self):
-        self.response = self._get_response()
+        self.message = self._get_response()
 
 def get_wikipedia_summary(article):
     wikipedia.set_lang("ru")

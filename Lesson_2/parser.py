@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-city = "vladivostok"
+city = "alushta"
 country = "russia"
 url = "https://world-weather.ru/pogoda/"
 response = requests.get(url + country + "/" + city)    #получаем ответ на hhtp запрос
@@ -9,7 +9,7 @@ response = requests.get(url + country + "/" + city)    #получаем отв�
 
 html = BeautifulSoup(response.content, "lxml")         #Передаем функции BeautifulSoup html код и указываем способ разметки hmtl
 
-print(response)
+print(response.url)
 
 #Ответ 1xx -- загрузка
 #Ответ 2xx -- означает что все работает
@@ -50,6 +50,9 @@ def condition():
 def humidity():
     return html.select("#weather-now-description  dd")[2].text # id - #
 
+def wind(): 
+    return html.find("span", {"class" : "tooltip"})
+
 def time_of_day():
     time_now = html.find("div",{"class":"weather-now-info"}).p.b.text # class - .
     #time_now = html.select('div.weather-now-info')[0].p.b.text
@@ -68,7 +71,7 @@ def main():
     temp_value = temp()
     wether_condition =condition()
     time_day = time_of_day()
-    print(time_day, temp_value, wether_condition, "Влажность "+ humidity())
+    print(time_day, temp_value, wether_condition, "Влажность "+ humidity(), wind())
     
 
 main()

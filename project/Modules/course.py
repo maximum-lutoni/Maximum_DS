@@ -6,9 +6,9 @@ from datetime import datetime
 class CourseProcessor():
     
     url = "http://www.cbr.ru/scripts/XML_daily.asp?"
-    response = "{0} рублей за 1 доллар \n {1} рублей за 1 евро \n {2} рублей за 10 юаней\n  {3} рублей за 1 фунт"
+    message = "{0} рублей за 1 доллар \n {1} рублей за 1 евро \n {2} рублей за 10 юаней\n  {3} рублей за 1 фунт"
 
-    def __init__(self):
+    def __init__(self, *args):
         today = datetime.today()
         today = today.strftime("%d/%m/%Y")
 
@@ -21,11 +21,11 @@ class CourseProcessor():
         return self.xml.find("valute",{'id': id }).value.text
 
     def _create_response(self):
-        self.response = self.response.format(self._get_course("R01235"),self._get_course("R01239"),self._get_course("R01375"),self._get_course("R01035"))
+        self.message = self.message.format(self._get_course("R01235"),self._get_course("R01239"),self._get_course("R01375"),self._get_course("R01035"))
 
     def run(self):
         self._create_response()
-        return self.response
+        return self.message
         
     
 
