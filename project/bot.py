@@ -2,8 +2,8 @@ from concurrent.futures import process
 import vk_api
 import random
 from vk_api.longpoll import VkLongPoll, VkEventType
-from Modules.course import getCourse
-from Modules.wiki import get_wikipedia_summary
+from Modules.course import CourseProcessor
+from Modules.wiki import WikipediaProcessor
 from Modules.weather import WeatherProcessor
 from Modules.memes import VKMemesProcessor
 from Modules.news import NewsProcessor
@@ -30,13 +30,15 @@ def main():
 
 
             if msg[0:2] == "-к":
-                response = "{0} рублей за 1 доллар \n {1} рублей за 1 евро \n {2} рублей за 10 юаней\n  {3} рублей за 1 фунт"
-                response = response.format(getCourse("R01235"),getCourse("R01239"),getCourse("R01375"),getCourse("R01035"))
-                vk.messages.send(user_id = user_id, random_id = random_id, message = response)
+                processor = CourseProcessor()
+                processor.run()
+                vk.messages.send(user_id=event.user_id, random_id=random_id, message=processor.response)
+                
             if msg[0:2] == "-c":
-                response = get_wikipedia_summary(msg[2:])
-                vk.messages.send(user_id = user_id, random_id = random_id, message = response)
-            #добавить модуль погоды
+                processor = WikipediaProcessor(msg[2:])
+                processor.run()
+                vk.messages.send(user_id=event.user_id, random_id=random_id, message=processor.response)                
+            
             if msg[0:2] == "-п":
                 processor = WeatherProcessor(msg[2:].strip())
                 processor.run()

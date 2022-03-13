@@ -14,13 +14,13 @@ class VKMemesProcessor:
         self.vk._auth_token()
     
     # получаем случайны пост со стены
-    def get_memes(self):
+    def _get_memes(self):
         random_offset = random.randint(1,1000)
         res = self.vk.method("wall.get",{"owner_id":self.group_id,"count":1,"offset":random_offset})
         return res
     
     # получаем id нужного объекта (В нашем случае photo)
-    def get_memes_id(self):
+    def _get_memes_id(self):
         while True:
             random_offset = random.randint(1,1000)
             res = self.vk.method("wall.get",{"owner_id":self.group_id,"count":1,"offset":random_offset})
@@ -30,7 +30,7 @@ class VKMemesProcessor:
                 return attachment[0]["photo"]["id"]
     # метод для запуска
     def run(self):
-        memes_id = self.get_memes_id()
+        memes_id = self._get_memes_id()
         self.attachment = f'photo{self.group_id}_{memes_id}'
 
 
