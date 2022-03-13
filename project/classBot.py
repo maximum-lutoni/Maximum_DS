@@ -6,6 +6,7 @@ from Modules.wiki import WikipediaProcessor
 from Modules.weather import WeatherProcessor
 from Modules.memes import VKMemesProcessor
 from Modules.news import NewsProcessor
+import argparse
 
 
 class Bot:
@@ -53,5 +54,8 @@ class Bot:
                 pass
 
 if __name__ == "__main__":
-    bot = Bot("4dca71364da2c42822a9db6f75598e419d63c65998d68618ba6a4c178acc9c6b90f9e2870c94c21621816")
+    parser = argparse.ArgumentParser(description="Конфигурация бота")
+    parser.add_argument('--token','-t',type=str, help="Токен для бота")
+    args = parser.parse_args()
+    bot = Bot(args.token)
     bot.run()
