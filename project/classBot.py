@@ -1,6 +1,3 @@
-from cgitb import handler
-from email import message
-from multiprocessing import process
 import vk_api
 import random
 from vk_api.longpoll import VkLongPoll, VkEventType
@@ -35,8 +32,8 @@ class Bot:
             return {"message":self.hello_message}
         
         processor = handler(query)
-        processor.run()
-        return {atr: getattr(processor,atr) for atr in ("message","attachemnt") if  getattr(process,atr,None)}
+        processor.run()  
+        return {atr: getattr(processor,atr) for atr in ("message","attachment") if  getattr(processor, atr, None)}
 
     def _handle_message(self,msg):
         handler = self.handlers.get(msg[0:2])
@@ -49,10 +46,8 @@ class Bot:
                 for event in self.longpoll.listen():
                     if event.type == VkEventType.MESSAGE_NEW and event.to_me:
                         msg = event.text.lower()
-                        print(msg)
                         random_id = random.randint(1,100000000)
                         params = {"user_id":event.user_id ,"random_id":random_id, **self._handle_message(msg)}
-                        print(params)
                         self.vk.messages.send(**params)
             except Exception:
                 pass

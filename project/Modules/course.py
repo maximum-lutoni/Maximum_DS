@@ -25,7 +25,6 @@ class CourseProcessor():
 
     def run(self):
         self._create_response()
-        return self.message
         
     
 
