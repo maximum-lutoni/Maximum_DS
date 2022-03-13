@@ -38,7 +38,7 @@ class Bot:
         processor.run()
         return {atr: getattr(processor,atr) for atr in ("message","attachemnt") if  getattr(process,atr,None)}
 
-    def _handler_massage(self,msg):
+    def _handle_message(self,msg):
         handler = self.handlers.get(msg[0:2])
         query = msg[2:].strip()
         return self._get_response(handler,query)
@@ -49,9 +49,11 @@ class Bot:
                 for event in self.longpoll.listen():
                     if event.type == VkEventType.MESSAGE_NEW and event.to_me:
                         msg = event.text.lower()
+                        print(msg)
                         random_id = random.randint(1,100000000)
-                        params = {"user_id":event.user_id ,"random_id":random_id, **self._handler_message(msg)}
-                        self.vk.messges.send(**params)
+                        params = {"user_id":event.user_id ,"random_id":random_id, **self._handle_message(msg)}
+                        print(params)
+                        self.vk.messages.send(**params)
             except Exception:
                 pass
 
